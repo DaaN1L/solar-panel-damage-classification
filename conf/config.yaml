@@ -1,0 +1,28 @@
+defaults:
+  - _self_
+  - dataset: some_dataset
+  - trainer: default_trainer
+  - training: default_training
+  - loss: bce_loss
+  - optimizer: adamw
+  - scheduler: plateau
+  - model: mobilenet_v2
+  - callbacks: callbacks
+  - data: data
+  - augmentation: stronger_augs
+
+general:
+  model_name: ${model.backbone.name}
+  save_dir: runs/
+  workspace: Danil
+  project_name: solar_panel_damage_classification
+
+hydra:
+  run:
+    # Output directory for normal runs
+    dir: ./outputs/${now:%Y-%m-%d_%H-%M-%S}
+  sweep:
+    # Output directory for sweep runs
+    dir: ./outputs/${now:%Y-%m-%d_%H-%M-%S}
+    # Output sub directory for sweep runs.
+    subdir: ${hydra.job.override_dirname}

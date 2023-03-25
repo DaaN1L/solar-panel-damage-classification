@@ -1,0 +1,8 @@
+# @package model
+backbone:
+  name: mobilenet_v3
+  class_name: torchvision.models.mobilenet_v3_small
+  params:
+    pretrained: True
+fine_tune: False
+freeze_up_to: -1

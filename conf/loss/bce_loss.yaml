@@ -1,0 +1,4 @@
+# @package loss
+name: bce
+class_name: torch.nn.BCEWithLogitsLoss
+

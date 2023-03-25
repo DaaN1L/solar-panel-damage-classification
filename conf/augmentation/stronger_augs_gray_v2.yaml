@@ -1,0 +1,75 @@
+# @package augmentation
+train:
+  augs:
+  - class_name: albumentations.Resize
+    params:
+      height: ${data.height}
+      width: ${data.width}
+      p: 1.0
+  - class_name: albumentations.HorizontalFlip
+    params:
+      p: 0.5
+  - class_name: albumentations.Blur
+    params:
+      p: 0.5
+  - class_name: albumentations.RandomBrightness
+    params:
+      brightness_limit: 0.8
+      contrast_limit: 0.8
+      p: 0.8
+  - class_name: albumentations.JpegCompression
+    params:
+      quality_lower: 50
+      quality_upper: 75
+      p: 1.0
+  - class_name: albumentations.ColorJitter
+    params:
+      brightness: 0.5
+      contrast: 0.5
+      saturation: 0.5
+      p: 0.7
+  - class_name: albumentations.RandomFog
+    params:
+      p: 0.7
+  - class_name: albumentations.RandomRain
+    params:
+      p: 0.7
+  - class_name: albumentations.Normalize
+    params:
+      mean:
+        - 0.485
+        - 0.456
+        - 0.406
+      std:
+        - 0.229
+        - 0.224
+        - 0.225
+      p: 1.0
+  - class_name: albumentations.ToGray
+    params:
+      p : 0.4
+  - class_name: albumentations.pytorch.transforms.ToTensorV2
+    params:
+      p: 1.0
+
+valid:
+  augs:
+    - class_name: albumentations.Resize
+      params:
+        height: ${data.height}
+        width: ${data.width}
+        p: 1.0
+    - class_name: albumentations.Normalize
+      params:
+        mean:
+          - 0.485
+          - 0.456
+          - 0.406
+        std:
+          - 0.229
+          - 0.224
+          - 0.225
+        p: 1.0
+    - class_name: albumentations.pytorch.transforms.ToTensorV2
+      params:
+        p: 1.0

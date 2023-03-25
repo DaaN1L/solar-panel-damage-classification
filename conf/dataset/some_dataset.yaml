@@ -1,0 +1,3 @@
+# @package dataset
+class_name: src.datasets.SomeDataset.SomeDataset
+num_classes: 1

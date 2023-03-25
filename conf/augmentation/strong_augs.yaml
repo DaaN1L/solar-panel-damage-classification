@@ -1,0 +1,49 @@
+# @package augmentation
+train:
+  augs:
+  - class_name: albumentations.Resize
+    params:
+      height: ${training.input_size}
+      width: ${training.input_size}
+      p: 1.0
+  - class_name: albumentations.ImageCompression
+    params:
+      quality_lower: 50
+      quality_upper: 75
+      p: 1.0
+  - class_name: albumentations.Normalize
+    params:
+      mean:
+        - 0.485
+        - 0.456
+        - 0.406
+      std:
+        - 0.229
+        - 0.224
+        - 0.225
+      p: 1.0
+  - class_name: albumentations.pytorch.transforms.ToTensorV2
+    params:
+      p: 1.0
+
+valid:
+  augs:
+    - class_name: albumentations.Resize
+      params:
+        height: ${training.input_size}
+        width: ${training.input_size}
+        p: 1.0
+    - class_name: albumentations.Normalize
+      params:
+        mean:
+          - 0.485
+          - 0.456
+          - 0.406
+        std:
+          - 0.229
+          - 0.224
+          - 0.225
+        p: 1.0
+    - class_name: albumentations.pytorch.transforms.ToTensorV2
+      params:
+        p: 1.0

@@ -1,0 +1,5 @@
+# @package optimizer
+class_name: torch.optim.Adam
+params:
+  lr: ${training.lr}
+  weight_decay: ${training.weight_decay}
